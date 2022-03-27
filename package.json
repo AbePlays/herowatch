@@ -3,13 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "check-format": "npm run prettier -- --list-different",
+    "check-types": "tsc",
+    "dev": "next dev",
+    "format": "npm run prettier -- --write",
+    "lint": "next lint",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "serve": "npm run build && npm start",
     "start": "next start",
-    "lint": "next lint"
+    "validate": "npm run check-types && npm run check-format && npm run lint && npm run build"
   },
   "dependencies": {
     "next": "12.1.1",
+    "preact": "^10.6.6",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
@@ -17,8 +24,13 @@
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
+    "autoprefixer": "^10.4.4",
     "eslint": "8.12.0",
     "eslint-config-next": "12.1.1",
+    "eslint-config-prettier": "^8.5.0",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.1",
+    "tailwindcss": "^3.0.23",
     "typescript": "4.6.3"
   }
 }
