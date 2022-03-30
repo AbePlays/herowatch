@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 const Wrapper: NextPage = ({ children }) => {
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <header>
         <nav>
           <Link href="/" passHref>
@@ -12,7 +13,7 @@ const Wrapper: NextPage = ({ children }) => {
         </nav>
       </header>
       <div>{children}</div>
-    </div>
+    </motion.div>
   )
 }
 
