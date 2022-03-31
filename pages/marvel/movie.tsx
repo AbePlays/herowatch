@@ -1,4 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
+import { motion } from 'framer-motion'
 
 export const getStaticProps: GetStaticProps = async () => {
   const dev = process.env.NODE_ENV !== 'production'
@@ -7,7 +9,7 @@ export const getStaticProps: GetStaticProps = async () => {
   )
   const data = await res.json()
 
-  // TODO: trim the data to only include only relevant data
+  // TODO: trim the data to include only relevant data
 
   return {
     props: { movie: data },
@@ -31,7 +33,11 @@ interface Props {
 
 const MarvelMovie: NextPage<Props> = (props) => {
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <Head>
+        <title>Upcoming Marvel Movies</title>
+        <meta name="description" content="Check upcoming Marvel movies" />
+      </Head>
       <h1>Upcoming Marvel Movie</h1>
       <ul>
         {props?.movie?.results?.map((item) => (
@@ -40,7 +46,7 @@ const MarvelMovie: NextPage<Props> = (props) => {
           </li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   )
 }
 

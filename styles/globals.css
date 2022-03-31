@@ -4,6 +4,12 @@
 
 @font-face {
   font-family: 'Plus Jakarta Sans';
+  src: url('../public/fonts/PlusJakartaSans-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
   src: url('../public/fonts/PlusJakartaSans-Regular.ttf');
   font-weight: normal;
 }

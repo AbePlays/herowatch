@@ -10,17 +10,17 @@ const allowedRoutes = ['/marvel/movie', '/dc/movie', '/marvel/tv', '/dc/tv']
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
   if (allowedRoutes.includes(router.pathname)) {
     return (
-      <AnimatePresence exitBeforeEnter>
-        <Wrapper key={router.pathname}>
-          <Component {...pageProps} />
-        </Wrapper>
-      </AnimatePresence>
+      <Wrapper>
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+      </Wrapper>
     )
   }
 
   return (
     <AnimatePresence exitBeforeEnter>
-      <Component {...pageProps} key={router.pathname} />
+      <Component {...pageProps} key={router.route} />
     </AnimatePresence>
   )
 }
