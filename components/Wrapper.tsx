@@ -12,12 +12,7 @@ const Wrapper: NextPage = ({ children }) => {
   const tvShowSelected = router.pathname.split('/')[2] === 'tv'
 
   return (
-    <motion.div
-      // initial={{ opacity: 0 }}
-      // animate={{ opacity: 1 }}
-      // exit={{ opacity: 0 }}
-      className="min-h-screen bg-[#EFEDE9] p-4 sm:px-8"
-    >
+    <div className="min-h-screen bg-[#EFEDE9] p-4 sm:px-8">
       <header>
         <nav className="text-center ">
           <Link href="/" passHref>
@@ -33,7 +28,7 @@ const Wrapper: NextPage = ({ children }) => {
         </Link>
         <span className="text-lg uppercase tracking-widest">{heading}</span>
       </div>
-      <div className="mt-8 flex items-center gap-16 pl-4">
+      <motion.div className="mt-8 flex items-center gap-16 pl-4" layout>
         <div className="relative">
           <Link href="/marvel/movie" passHref>
             <a
@@ -62,10 +57,10 @@ const Wrapper: NextPage = ({ children }) => {
             <motion.div className="absolute -top-3 -left-4 h-12 w-32 rounded-full bg-[#EABC85]" layoutId="background" />
           )}
         </div>
-      </div>
+      </motion.div>
       <hr className="my-8 border-gray-300" />
       <main>{children}</main>
-    </motion.div>
+    </div>
   )
 }
 
