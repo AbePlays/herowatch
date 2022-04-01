@@ -16,6 +16,12 @@
 
 @font-face {
   font-family: 'Plus Jakarta Sans';
+  src: url('../public/fonts/PlusJakartaSans-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
   src: url('../public/fonts/PlusJakartaSans-Bold.ttf');
   font-weight: bold;
 }
