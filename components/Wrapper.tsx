@@ -13,59 +13,61 @@ const Wrapper: NextPage = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-[#EFEDE9] p-4 sm:px-8">
-      <header>
-        <nav className="text-center ">
+      <div className="mx-auto max-w-screen-lg">
+        <header>
+          <nav className="text-center ">
+            <Link href="/" passHref>
+              <a className="text-lg tracking-widest">trackr.</a>
+            </Link>
+          </nav>
+        </header>
+        <div className="mt-8 flex items-center gap-6">
           <Link href="/" passHref>
-            <a className="text-lg tracking-widest">trackr.</a>
+            <a aria-label="Go Back" className="rounded-xl bg-gray-100 p-3 shadow-sm">
+              <IconArrowLeft />
+            </a>
           </Link>
-        </nav>
-      </header>
-      <div className="mt-8 flex items-center gap-8">
-        <Link href="/" passHref>
-          <a aria-label="Go Back">
-            <IconArrowLeft />
-          </a>
-        </Link>
-        <span className="text-xl uppercase tracking-widest">{heading}</span>
+          <span className="text-3xl font-semibold capitalize tracking-wide">{heading}</span>
+        </div>
+        <motion.div className="mt-8 flex items-center gap-6" layout>
+          <div className="relative">
+            <Link href="/marvel/movie" passHref>
+              <a
+                className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
+                  movieSelected ? 'text-white' : 'text-black'
+                }`}
+              >
+                Movies
+              </a>
+            </Link>
+            {movieSelected && (
+              <motion.div
+                className="absolute inset-0 -top-3 h-12 rounded-full bg-[#EABC85] shadow"
+                layoutId="background"
+              />
+            )}
+          </div>
+          <div className="relative">
+            <Link href="/marvel/tv" passHref>
+              <a
+                className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
+                  tvShowSelected ? 'text-white' : 'text-black'
+                }`}
+              >
+                Tv Shows
+              </a>
+            </Link>
+            {tvShowSelected && (
+              <motion.div
+                className="absolute inset-0 -top-3 h-12 rounded-full bg-[#EABC85] shadow"
+                layoutId="background"
+              />
+            )}
+          </div>
+        </motion.div>
+        <hr className="my-8 border-gray-300" />
+        <main>{children}</main>
       </div>
-      <motion.div className="mt-8 flex items-center gap-16 pl-4" layout>
-        <div className="relative">
-          <Link href="/marvel/movie" passHref>
-            <a
-              className={`relative z-10 pl-3 font-light uppercase tracking-widest ${
-                movieSelected ? 'text-white' : 'text-black'
-              }`}
-            >
-              Movies
-            </a>
-          </Link>
-          {movieSelected && (
-            <motion.div
-              className="absolute -top-3 -left-4 h-12 w-32 rounded-full bg-[#EABC85] shadow"
-              layoutId="background"
-            />
-          )}
-        </div>
-        <div className="relative">
-          <Link href="/marvel/tv" passHref>
-            <a
-              className={`relative z-10 font-light uppercase tracking-widest ${
-                tvShowSelected ? 'text-white' : 'text-black'
-              }`}
-            >
-              Tv Shows
-            </a>
-          </Link>
-          {tvShowSelected && (
-            <motion.div
-              className="absolute -top-3 -left-4 h-12 w-32 rounded-full bg-[#EABC85] shadow"
-              layoutId="background"
-            />
-          )}
-        </div>
-      </motion.div>
-      <hr className="my-8 border-gray-300" />
-      <main>{children}</main>
     </div>
   )
 }
