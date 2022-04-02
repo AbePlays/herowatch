@@ -26,7 +26,7 @@ const Wrapper: NextPage = ({ children }) => {
             <IconArrowLeft />
           </a>
         </Link>
-        <span className="text-lg uppercase tracking-widest">{heading}</span>
+        <span className="text-xl uppercase tracking-widest">{heading}</span>
       </div>
       <motion.div className="mt-8 flex items-center gap-16 pl-4" layout>
         <div className="relative">
@@ -40,7 +40,10 @@ const Wrapper: NextPage = ({ children }) => {
             </a>
           </Link>
           {movieSelected && (
-            <motion.div className="absolute -top-3 -left-4 h-12 w-32 rounded-full bg-[#EABC85]" layoutId="background" />
+            <motion.div
+              className="absolute -top-3 -left-4 h-12 w-32 rounded-full bg-[#EABC85] shadow"
+              layoutId="background"
+            />
           )}
         </div>
         <div className="relative">
@@ -54,7 +57,10 @@ const Wrapper: NextPage = ({ children }) => {
             </a>
           </Link>
           {tvShowSelected && (
-            <motion.div className="absolute -top-3 -left-4 h-12 w-32 rounded-full bg-[#EABC85]" layoutId="background" />
+            <motion.div
+              className="absolute -top-3 -left-4 h-12 w-32 rounded-full bg-[#EABC85] shadow"
+              layoutId="background"
+            />
           )}
         </div>
       </motion.div>

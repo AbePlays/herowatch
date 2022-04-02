@@ -1,11 +1,10 @@
 import type { NextPage } from 'next'
 import type { StaticImageData } from 'next/image'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
+import BlurImage from '../components/BlurImage'
 import dc from '../public/images/DC.png'
 import handshake from '../public/images/Handshake.webp'
 import marvel from '../public/images/Marvel.jpeg'
@@ -18,8 +17,6 @@ interface IImageWrapper {
 }
 
 const ImageWrapper = ({ alt, bg, href, src }: IImageWrapper) => {
-  const [loading, setLoading] = useState<boolean>(true)
-
   return (
     <Link href={href} passHref>
       <motion.a
@@ -27,39 +24,13 @@ const ImageWrapper = ({ alt, bg, href, src }: IImageWrapper) => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <Image
-          alt={alt}
-          className={`duration-700 ease-in-out ${
-            loading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'
-          }`}
-          objectFit="cover"
-          objectPosition="center"
-          onLoadingComplete={() => setLoading(false)}
-          placeholder="blur"
-          src={src}
-        />
+        <BlurImage alt={alt} src={src} />
       </motion.a>
     </Link>
   )
 }
 
 const Home: NextPage = () => {
-  const carouselRef = useRef<HTMLDivElement>(null)
-  const [width, setWidth] = useState<number>(0)
-
-  useEffect(() => {
-    const evaluateWidth = () => {
-      if (carouselRef.current) {
-        setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
-      }
-    }
-
-    evaluateWidth()
-    window.addEventListener('resize', evaluateWidth)
-
-    return () => window.removeEventListener('resize', evaluateWidth)
-  }, [])
-
   return (
     <>
       <div className="relative min-h-screen w-screen bg-[url('/images/bg.jpeg')] bg-cover bg-no-repeat blur-2xl hue-rotate-[150deg]">
@@ -91,19 +62,17 @@ const Home: NextPage = () => {
             Universe
           </h1>
         </div>
-        <div className="mx-auto mt-20 max-w-screen-md overflow-hidden p-4">
-          <motion.div
-            className="flex space-x-8"
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-            key={width}
-            ref={carouselRef}
-          >
+        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-md snap-x gap-8 overflow-x-auto p-4">
+          <li className="snap-center">
             <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel" src={marvel} />
+          </li>
+          <li className="snap-center">
             <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc" src={dc} />
+          </li>
+          <li className="snap-center">
             <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/" src={handshake} />
-          </motion.div>
-        </div>
+          </li>
+        </ul>
       </motion.div>
     </>
   )
