@@ -5,37 +5,37 @@ import { motion } from 'framer-motion'
 import BlurImage from '../../components/BlurImage'
 import IconClock from '../../components/IconClock'
 
-export const getStaticProps: GetStaticProps = async () => {
-  const dev = process.env.NODE_ENV !== 'production'
-  const res = await fetch(
-    dev ? 'http://localhost:3000/api/marvel/tv' : 'https://nextdcmarvelproject.vercel.app/api/marvel/tv'
-  )
-  const data = await res.json()
+// export const getStaticProps: GetStaticProps = async () => {
+//   const dev = process.env.NODE_ENV !== 'production'
+//   const res = await fetch(dev ? 'http://localhost:3000/api/dc/tv' : 'https://nextdcmarvelproject.vercel.app/api/dc/tv')
+//   const data = await res.json()
 
-  const today = new Date()
-  const result =
-    data &&
-    data.results &&
-    data.results
-      ?.filter((item: any) => {
-        const dateReleaseProduct = new Date(item.first_air_date)
-        item.daysToRelease = Math.floor((dateReleaseProduct.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
-        return dateReleaseProduct.getTime() >= today.getTime()
-      })
-      ?.map((item: any) => {
-        return {
-          daysToRelease: item.daysToRelease,
-          id: item.id,
-          poster_path: item.poster_path,
-          title: item.original_name,
-        }
-      })
+//   const today = new Date()
+//   const result =
+//     data &&
+//     data.results &&
+//     data.results
+//       ?.filter((item: any) => {
+//         const dateReleaseProduct = new Date(item.first_air_date)
+//         item.daysToRelease = Math.floor((dateReleaseProduct.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+//         return dateReleaseProduct.getTime() >= today.getTime()
+//       })
+//       ?.map((item: any) => {
+//         return {
+//           daysToRelease: item.daysToRelease,
+//           id: item.id,
+//           poster_path: item.poster_path,
+//           title: item.original_name,
+//         }
+//       })
 
-  return {
-    props: { results: result?.reverse() },
-    revalidate: 60 * 60 * 6, // 6 hours
-  }
-}
+//   return {
+//     props: { results: result?.reverse() },
+//     revalidate: 60 * 60 * 6, // 6 hours
+//   }
+// }
+
+// TODO: add an api route to get the data
 
 interface TvShow {
   daysToRelease: number
@@ -48,12 +48,12 @@ interface Props {
   results: TvShow[]
 }
 
-const MarvelTvShows: NextPage<Props> = (props) => {
+const DcTvShows: NextPage<Props> = (props) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
-        <title>Upcoming Marvel Tv Shows</title>
-        <meta name="description" content="Check upcoming Marvel Tv Shows" />
+        <title>Upcoming Dc Tv Shows</title>
+        <meta name="description" content="Check upcoming Dc Tv Shows" />
       </Head>
       {props.results?.length > 0 ? (
         <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg cursor-grab snap-x gap-8 overflow-x-auto p-4">
@@ -85,4 +85,4 @@ const MarvelTvShows: NextPage<Props> = (props) => {
   )
 }
 
-export default MarvelTvShows
+export default DcTvShows

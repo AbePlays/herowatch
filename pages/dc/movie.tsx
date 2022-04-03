@@ -8,7 +8,7 @@ import IconClock from '../../components/IconClock'
 export const getStaticProps: GetStaticProps = async () => {
   const dev = process.env.NODE_ENV !== 'production'
   const res = await fetch(
-    dev ? 'http://localhost:3000/api/marvel/tv' : 'https://nextdcmarvelproject.vercel.app/api/marvel/tv'
+    dev ? 'http://localhost:3000/api/dc/movie' : 'https://nextdcmarvelproject.vercel.app/api/dc/movie'
   )
   const data = await res.json()
 
@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
     data.results &&
     data.results
       ?.filter((item: any) => {
-        const dateReleaseProduct = new Date(item.first_air_date)
+        const dateReleaseProduct = new Date(item.release_date)
         item.daysToRelease = Math.floor((dateReleaseProduct.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
         return dateReleaseProduct.getTime() >= today.getTime()
       })
@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async () => {
           daysToRelease: item.daysToRelease,
           id: item.id,
           poster_path: item.poster_path,
-          title: item.original_name,
+          title: item.title,
         }
       })
 
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-interface TvShow {
+interface Movie {
   daysToRelease: number
   id: number
   poster_path: string
@@ -45,15 +45,15 @@ interface TvShow {
 }
 
 interface Props {
-  results: TvShow[]
+  results: Movie[]
 }
 
-const MarvelTvShows: NextPage<Props> = (props) => {
+const DcMovie: NextPage<Props> = (props) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
-        <title>Upcoming Marvel Tv Shows</title>
-        <meta name="description" content="Check upcoming Marvel Tv Shows" />
+        <title>Upcoming Dc Movies</title>
+        <meta name="description" content="Check upcoming Dc movies" />
       </Head>
       {props.results?.length > 0 ? (
         <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg cursor-grab snap-x gap-8 overflow-x-auto p-4">
@@ -85,4 +85,4 @@ const MarvelTvShows: NextPage<Props> = (props) => {
   )
 }
 
-export default MarvelTvShows
+export default DcMovie

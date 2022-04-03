@@ -31,7 +31,7 @@ const Wrapper: NextPage = ({ children }) => {
         </div>
         <motion.div className="mt-8 flex items-center gap-6" layout>
           <div className="relative">
-            <Link href="/marvel/movie" passHref>
+            <Link href={`/${heading}/movie`} passHref>
               <a
                 className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
                   movieSelected ? 'text-white' : 'text-black'
@@ -48,7 +48,7 @@ const Wrapper: NextPage = ({ children }) => {
             )}
           </div>
           <div className="relative">
-            <Link href="/marvel/tv" passHref>
+            <Link href={`/${heading}/tv`} passHref>
               <a
                 className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
                   tvShowSelected ? 'text-white' : 'text-black'
