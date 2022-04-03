@@ -16,13 +16,20 @@ export const getStaticProps: GetStaticProps = async () => {
   const result =
     data &&
     data.results &&
-    data.results?.filter((item: any) => {
-      const dateReleaseProduct = new Date(item.release_date)
-      item.daysToRelease = Math.floor((dateReleaseProduct.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
-      return dateReleaseProduct.getTime() >= today.getTime()
-    })
-
-  // TODO: trim the data to include only relevant data
+    data.results
+      ?.filter((item: any) => {
+        const dateReleaseProduct = new Date(item.release_date)
+        item.daysToRelease = Math.floor((dateReleaseProduct.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+        return dateReleaseProduct.getTime() >= today.getTime()
+      })
+      ?.map((item: any) => {
+        return {
+          daysToRelease: item.daysToRelease,
+          id: item.id,
+          poster_path: item.poster_path,
+          title: item.title,
+        }
+      })
 
   return {
     props: { results: result?.reverse() },
@@ -34,7 +41,6 @@ interface Movie {
   daysToRelease: number
   id: number
   poster_path: string
-  release_date: string
   title: string
 }
 
