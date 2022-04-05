@@ -7,9 +7,10 @@ import IconClock from '../../components/IconClock'
 
 export const getStaticProps: GetStaticProps = async () => {
   const dev = process.env.NODE_ENV !== 'production'
-  const res = await fetch(
-    dev ? 'http://localhost:3000/api/marvel/movie' : 'https://nextdcmarvelproject.vercel.app/api/marvel/movie'
-  )
+  const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
+  const marvelApi = `${basePath}/api/marvel/movie`
+
+  const res = await fetch(marvelApi)
   const data = await res.json()
 
   const today = new Date()

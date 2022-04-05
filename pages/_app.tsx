@@ -5,7 +5,7 @@ import Wrapper from '../components/Wrapper'
 import '../styles/globals.css'
 
 // allowed routes are routes on which wrapper is required
-const allowedRoutes = ['/marvel/movie', '/dc/movie', '/marvel/tv', '/dc/tv']
+const allowedRoutes = ['/marvel/movie', '/dc/movie', '/marvel/tv', '/dc/tv', '/all/movie', '/all/tv']
 
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
   if (allowedRoutes.includes(router.pathname)) {

@@ -70,7 +70,7 @@ const Home: NextPage = () => {
             <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc" src={dc} />
           </li>
           <li className="snap-center">
-            <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/" src={handshake} />
+            <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all" src={handshake} />
           </li>
         </ul>
       </motion.div>

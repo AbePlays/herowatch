@@ -9,28 +9,27 @@ export const getStaticProps: GetStaticProps = async () => {
   const dev = process.env.NODE_ENV !== 'production'
   const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
   const dcApi = `${basePath}/api/dc/movie`
+  const marvelApi = `${basePath}/api/marvel/movie`
 
-  const res = await fetch(dcApi)
-  const data = await res.json()
+  const res = await Promise.all([fetch(dcApi), fetch(marvelApi)])
+  const dcRes = await res[0].json()
+  const marvelRes = await res[1].json()
+  const data = { results: [...dcRes?.results, ...marvelRes?.results] }
 
   const today = new Date()
   const result =
     data &&
     data.results &&
     data.results
-      ?.filter((item: any) => {
+      .filter((item) => {
         const dateReleaseProduct = new Date(item.release_date)
         item.daysToRelease = Math.floor((dateReleaseProduct.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
         return dateReleaseProduct.getTime() >= today.getTime()
       })
-      ?.map((item: any) => {
-        return {
-          daysToRelease: item.daysToRelease,
-          id: item.id,
-          poster_path: item.poster_path,
-          title: item.title,
-        }
+      .map((item) => {
+        return { daysToRelease: item.daysToRelease, id: item.id, poster_path: item.poster_path, title: item.title }
       })
+      .sort((a, b) => b.daysToRelease - a.daysToRelease)
 
   return {
     props: { results: result?.reverse() },
@@ -49,7 +48,7 @@ interface Props {
   results: Movie[]
 }
 
-const DcMovie: NextPage<Props> = (props) => {
+const AllMovie: NextPage<Props> = (props) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
@@ -86,4 +85,4 @@ const DcMovie: NextPage<Props> = (props) => {
   )
 }
 
-export default DcMovie
+export default AllMovie

@@ -8,9 +8,9 @@ import IconClock from '../../components/IconClock'
 export const getStaticProps: GetStaticProps = async () => {
   const dev = process.env.NODE_ENV !== 'production'
   const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
-  const dcApi = `${basePath}/api/dc/movie`
+  const marvelApi = `${basePath}/api/marvel/tv`
 
-  const res = await fetch(dcApi)
+  const res = await fetch(marvelApi)
   const data = await res.json()
 
   const today = new Date()
@@ -18,17 +18,17 @@ export const getStaticProps: GetStaticProps = async () => {
     data &&
     data.results &&
     data.results
-      ?.filter((item: any) => {
-        const dateReleaseProduct = new Date(item.release_date)
+      .filter((item: any) => {
+        const dateReleaseProduct = new Date(item.first_air_date)
         item.daysToRelease = Math.floor((dateReleaseProduct.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
         return dateReleaseProduct.getTime() >= today.getTime()
       })
-      ?.map((item: any) => {
+      .map((item: any) => {
         return {
           daysToRelease: item.daysToRelease,
           id: item.id,
           poster_path: item.poster_path,
-          title: item.title,
+          title: item.original_name,
         }
       })
 
@@ -38,7 +38,9 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-interface Movie {
+// TODO: intergate dc tv show api once it is ready
+
+interface TvShow {
   daysToRelease: number
   id: number
   poster_path: string
@@ -46,15 +48,15 @@ interface Movie {
 }
 
 interface Props {
-  results: Movie[]
+  results: TvShow[]
 }
 
-const DcMovie: NextPage<Props> = (props) => {
+const AllTvShows: NextPage<Props> = (props) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
-        <title>Upcoming Dc Movies</title>
-        <meta name="description" content="Check upcoming Dc movies" />
+        <title>Upcoming Dc Tv Shows</title>
+        <meta name="description" content="Check upcoming Dc Tv Shows" />
       </Head>
       {props.results?.length > 0 ? (
         <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg cursor-grab snap-x gap-8 overflow-x-auto p-4">
@@ -86,4 +88,4 @@ const DcMovie: NextPage<Props> = (props) => {
   )
 }
 
-export default DcMovie
+export default AllTvShows

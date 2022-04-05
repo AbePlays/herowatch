@@ -23,11 +23,11 @@ const Wrapper: NextPage = ({ children }) => {
         </header>
         <div className="mt-8 flex items-center gap-6">
           <Link href="/" passHref>
-            <a aria-label="Go Back" className="rounded-xl bg-gray-100 p-3 shadow-sm">
+            <a aria-label="Go Back" className="rounded-xl bg-gray-100 p-2.5 shadow-sm sm:p-3">
               <IconArrowLeft />
             </a>
           </Link>
-          <span className="text-3xl font-semibold capitalize tracking-wide">{heading}</span>
+          <span className="text-2xl font-semibold capitalize tracking-wide sm:text-3xl">{heading}</span>
         </div>
         <motion.div className="mt-8 flex items-center gap-6" layout>
           <div className="relative">
