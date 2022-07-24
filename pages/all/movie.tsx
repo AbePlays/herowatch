@@ -1,19 +1,19 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 
 import BlurImage from '../../components/BlurImage'
 import IconClock from '../../components/IconClock'
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const dev = process.env.NODE_ENV !== 'production'
   const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
   const dcApi = `${basePath}/api/dc/movie`
   const marvelApi = `${basePath}/api/marvel/movie`
 
-  const res = await Promise.all([fetch(dcApi), fetch(marvelApi)])
-  const dcRes = await res[0].json()
-  const marvelRes = await res[1].json()
+  const apiRes = await Promise.all([fetch(dcApi), fetch(marvelApi)])
+  const dcRes = await apiRes[0].json()
+  const marvelRes = await apiRes[1].json()
   const data = { results: [...dcRes?.results, ...marvelRes?.results] }
 
   const today = new Date()
@@ -31,9 +31,10 @@ export const getStaticProps: GetStaticProps = async () => {
       })
       .sort((a, b) => b.daysToRelease - a.daysToRelease)
 
+  res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=600')
+
   return {
     props: { results: result?.reverse() },
-    revalidate: 60 * 60 * 6, // 6 hours
   }
 }
 

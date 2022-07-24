@@ -1,17 +1,17 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 
 import BlurImage from '../../components/BlurImage'
 import IconClock from '../../components/IconClock'
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const dev = process.env.NODE_ENV !== 'production'
   const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
   const marvelApi = `${basePath}/api/marvel/tv`
 
-  const res = await fetch(marvelApi)
-  const data = await res.json()
+  const apiRes = await fetch(marvelApi)
+  const data = await apiRes.json()
 
   const today = new Date()
   const result =
@@ -31,6 +31,8 @@ export const getStaticProps: GetStaticProps = async () => {
           title: item.original_name,
         }
       })
+
+  res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=600')
 
   return {
     props: { results: result?.reverse() },
