@@ -7,7 +7,7 @@ import IconClock from '../../components/IconClock'
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const dev = process.env.NODE_ENV !== 'production'
-  const basePath = !dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
+  const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
   const marvelApi = `${basePath}/api/marvel/movie`
 
   const apiRes = await fetch(marvelApi)
