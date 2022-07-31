@@ -1,17 +1,17 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 
 import BlurImage from '../../components/BlurImage'
 import IconClock from '../../components/IconClock'
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const dev = process.env.NODE_ENV !== 'production'
   const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
   const marvelApi = `${basePath}/api/marvel/tv`
 
-  const res = await fetch(marvelApi)
-  const data = await res.json()
+  const apiRes = await fetch(marvelApi)
+  const data = await apiRes.json()
 
   const today = new Date()
   const result =
@@ -32,10 +32,9 @@ export const getStaticProps: GetStaticProps = async () => {
         }
       })
 
-  return {
-    props: { results: result?.reverse() },
-    revalidate: 60 * 60 * 6, // 6 hours
-  }
+  res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=600')
+
+  return { props: { results: result?.reverse() } }
 }
 
 // TODO: intergate dc tv show api once it is ready
@@ -56,10 +55,10 @@ const AllTvShows: NextPage<Props> = (props) => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
         <title>Upcoming Dc Tv Shows</title>
-        <meta name="description" content="Check upcoming Dc Tv Shows" />
+        <meta name="description" content="Check upcoming Dc and Marvel Tv Shows" />
       </Head>
       {props.results?.length > 0 ? (
-        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg cursor-grab snap-x gap-8 overflow-x-auto p-4">
+        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg snap-x gap-8 overflow-x-auto p-4">
           {props?.results?.map((item) => (
             <li
               className="relative h-[25rem] w-60 shrink-0 snap-center overflow-hidden rounded-lg shadow-lg sm:h-[30rem] sm:w-80"

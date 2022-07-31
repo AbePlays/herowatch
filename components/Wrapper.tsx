@@ -1,11 +1,10 @@
-import type { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
 import IconArrowLeft from './IconArrowLeft'
 
-const Wrapper: NextPage = ({ children }) => {
+export default function Wrapper({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const heading = router.pathname.split('/')[1]
   const movieSelected = router.pathname.split('/')[2] === 'movie'
@@ -71,5 +70,3 @@ const Wrapper: NextPage = ({ children }) => {
     </div>
   )
 }
-
-export default Wrapper
