@@ -64,13 +64,13 @@ const Home: NextPage = () => {
         </div>
         <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-md snap-x gap-8 overflow-x-auto p-4">
           <li className="snap-center">
-            <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel" src={marvel} />
+            <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel/movie" src={marvel} />
           </li>
           <li className="snap-center">
-            <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc" src={dc} />
+            <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc/movie" src={dc} />
           </li>
           <li className="snap-center">
-            <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all" src={handshake} />
+            <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all/movie" src={handshake} />
           </li>
         </ul>
       </motion.div>

@@ -58,7 +58,7 @@ const MarvelTvShows: NextPage<Props> = (props) => {
         <meta name="description" content="Check upcoming Marvel Tv Shows" />
       </Head>
       {props.results?.length > 0 ? (
-        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg cursor-grab snap-x gap-8 overflow-x-auto p-4">
+        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg snap-x gap-8 overflow-x-auto p-4">
           {props?.results?.map((item) => (
             <li
               className="relative h-[25rem] w-60 shrink-0 snap-center overflow-hidden rounded-lg shadow-lg sm:h-[30rem] sm:w-80"

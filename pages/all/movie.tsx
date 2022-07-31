@@ -54,10 +54,10 @@ const AllMovie: NextPage<Props> = (props) => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
         <title>Upcoming Dc Movies</title>
-        <meta name="description" content="Check upcoming Dc movies" />
+        <meta name="description" content="Check upcoming Dc and Marvel movies" />
       </Head>
       {props.results?.length > 0 ? (
-        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg cursor-grab snap-x gap-8 overflow-x-auto p-4">
+        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg snap-x gap-8 overflow-x-auto p-4">
           {props?.results?.map((item) => (
             <li
               className="relative h-[25rem] w-60 shrink-0 snap-center overflow-hidden rounded-lg shadow-lg sm:h-[30rem] sm:w-80"
