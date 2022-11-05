@@ -3,16 +3,14 @@ import Image, { ImageProps } from 'next/image'
 import { useState } from 'react'
 
 const BlurImage: FunctionComponent<ImageProps> = ({ alt, className, src, ...props }) => {
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState(true)
 
   return (
     <Image
       alt={alt}
-      className={`duration-700 ease-in-out ${className} ${
+      className={`object-cover object-center duration-700 ease-in-out ${className} ${
         loading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'
       }`.trim()}
-      objectFit="cover"
-      objectPosition="center"
       onLoadingComplete={() => setLoading(false)}
       placeholder={typeof src === 'string' ? 'empty' : 'blur'}
       src={src}

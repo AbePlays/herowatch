@@ -18,7 +18,7 @@ interface IImageWrapper {
 
 const ImageWrapper = ({ alt, bg, href, src }: IImageWrapper) => {
   return (
-    <Link href={href} passHref>
+    <Link href={href} legacyBehavior passHref>
       <motion.a
         className={`grid h-64 w-72 flex-shrink-0 cursor-pointer place-content-center overflow-hidden rounded-lg shadow-lg ${bg}`}
         whileHover={{ scale: 1.05 }}
@@ -48,8 +48,8 @@ const Home: NextPage = () => {
       >
         <header>
           <nav>
-            <Link href="/" passHref>
-              <a className="text-lg tracking-widest">trackr.</a>
+            <Link className="text-lg tracking-widest" href="/">
+              trackr.
             </Link>
           </nav>
         </header>
@@ -57,12 +57,15 @@ const Home: NextPage = () => {
           <p className="font-bold text-stone-600" style={{ wordSpacing: '2px' }}>
             Upcoming DC and Marvel Project Tracker
           </p>
-          <h1 className="mt-20 text-5xl font-bold leading-tight sm:text-6xl">
+          <h1 className="mt-20 text-5xl font-bold leading-tight sm:text-6xl" id="title">
             Choose a Cinematic <br />
             Universe
           </h1>
         </div>
-        <ul className="no-scrollbar mx-auto mt-20 flex max-w-screen-md snap-x gap-8 overflow-x-auto p-4">
+        <ul
+          aria-labelledby="title"
+          className="no-scrollbar mx-auto mt-20 flex max-w-screen-md snap-x gap-8 overflow-x-auto p-4"
+        >
           <li className="snap-center">
             <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel/movie" src={marvel} />
           </li>
