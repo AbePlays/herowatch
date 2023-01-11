@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import type { StaticImageData } from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import BlurImage from '../components/BlurImage'
 import dc from '../public/images/DC.png'
@@ -19,13 +19,13 @@ interface IImageWrapper {
 const ImageWrapper = ({ alt, bg, href, src }: IImageWrapper) => {
   return (
     <Link href={href} passHref legacyBehavior>
-      <motion.a
+      <m.a
         className={`grid h-64 w-72 flex-shrink-0 cursor-pointer place-content-center overflow-hidden rounded-lg shadow-lg ${bg}`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         <BlurImage alt={alt} src={src} />
-      </motion.a>
+      </m.a>
     </Link>
   )
 }
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
       </div>
-      <motion.div
+      <m.div
         className="absolute inset-0 p-4 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
             <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all/movie" src={handshake} />
           </li>
         </ul>
-      </motion.div>
+      </m.div>
     </>
   )
 }

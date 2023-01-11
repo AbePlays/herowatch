@@ -1,8 +1,8 @@
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, LazyMotion } from 'framer-motion'
 import type { AppProps } from 'next/app'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { useEffect } from 'react'
+import React from 'react'
 
 import 'nprogress/nprogress.css'
 import Wrapper from '../components/Wrapper'
@@ -17,9 +17,10 @@ NProgress.configure({
 
 // allowed routes are routes on which wrapper is required
 const allowedRoutes = ['/marvel/movie', '/dc/movie', '/marvel/tv', '/dc/tv', '/all/movie', '/all/tv']
+const loadFeatures = () => import('../utils/framer-motion').then((res) => res.default)
 
-function MyApp({ Component, pageProps, router }: AppProps) {
-  useEffect(() => {
+export default function MyApp({ Component, pageProps, router }: AppProps) {
+  React.useEffect(() => {
     Router.events.on('routeChangeStart', NProgress.start)
     Router.events.on('routeChangeComplete', NProgress.done)
     Router.events.on('routeChangeError', NProgress.done)
@@ -31,21 +32,19 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     }
   }, [])
 
+  let Comp: React.FC<{ children: React.ReactNode }> = React.Fragment
+
   if (allowedRoutes.includes(router.pathname)) {
-    return (
-      <Wrapper>
-        <AnimatePresence mode="wait">
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
-      </Wrapper>
-    )
+    Comp = Wrapper
   }
 
   return (
-    <AnimatePresence mode="wait">
-      <Component {...pageProps} key={router.route} />
-    </AnimatePresence>
+    <Comp>
+      <LazyMotion features={loadFeatures} strict>
+        <AnimatePresence mode="wait">
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+      </LazyMotion>
+    </Comp>
   )
 }
-
-export default MyApp
