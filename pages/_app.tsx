@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   if (allowedRoutes.includes(router.pathname)) {
     return (
       <Wrapper>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
       </Wrapper>
@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   }
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode="wait">
       <Component {...pageProps} key={router.route} />
     </AnimatePresence>
   )

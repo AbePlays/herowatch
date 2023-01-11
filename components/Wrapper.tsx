@@ -15,29 +15,26 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
       <div className="mx-auto max-w-screen-lg">
         <header>
           <nav className="text-center ">
-            <Link href="/" passHref>
-              <a className="text-lg tracking-widest">trackr.</a>
+            <Link href="/" className="text-lg tracking-widest">
+              trackr.
             </Link>
           </nav>
         </header>
         <div className="mt-8 flex items-center gap-6">
-          <Link href="/" passHref>
-            <a aria-label="Go Back" className="rounded-xl bg-gray-100 p-2.5 shadow-sm sm:p-3">
-              <IconArrowLeft />
-            </a>
+          <Link aria-label="Go Back" className="rounded-xl bg-gray-100 p-2.5 shadow-sm sm:p-3" href="/">
+            <IconArrowLeft />
           </Link>
           <span className="text-2xl font-semibold capitalize tracking-wide sm:text-3xl">{heading}</span>
         </div>
         <motion.div className="mt-8 flex items-center gap-6" layout>
           <div className="relative">
-            <Link href={`/${heading}/movie`} passHref>
-              <a
-                className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
-                  movieSelected ? 'text-white' : 'text-black'
-                }`}
-              >
-                Movies
-              </a>
+            <Link
+              className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
+                movieSelected ? 'text-white' : 'text-black'
+              }`}
+              href={`/${heading}/movie`}
+            >
+              Movies
             </Link>
             {movieSelected && (
               <motion.div
@@ -47,14 +44,13 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
             )}
           </div>
           <div className="relative">
-            <Link href={`/${heading}/tv`} passHref>
-              <a
-                className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
-                  tvShowSelected ? 'text-white' : 'text-black'
-                }`}
-              >
-                Tv Shows
-              </a>
+            <Link
+              className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
+                tvShowSelected ? 'text-white' : 'text-black'
+              }`}
+              href={`/${heading}/tv`}
+            >
+              Tv Shows
             </Link>
             {tvShowSelected && (
               <motion.div

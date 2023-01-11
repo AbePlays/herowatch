@@ -18,7 +18,7 @@ interface IImageWrapper {
 
 const ImageWrapper = ({ alt, bg, href, src }: IImageWrapper) => {
   return (
-    <Link href={href} passHref>
+    <Link href={href} passHref legacyBehavior>
       <motion.a
         className={`grid h-64 w-72 flex-shrink-0 cursor-pointer place-content-center overflow-hidden rounded-lg shadow-lg ${bg}`}
         whileHover={{ scale: 1.05 }}
@@ -48,8 +48,8 @@ const Home: NextPage = () => {
       >
         <header>
           <nav>
-            <Link href="/" passHref>
-              <a className="text-lg tracking-widest">trackr.</a>
+            <Link className="text-lg tracking-widest" href="/">
+              trackr.
             </Link>
           </nav>
         </header>
