@@ -39,12 +39,12 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
   }
 
   return (
-    <Comp>
-      <LazyMotion features={loadFeatures} strict>
+    <LazyMotion features={loadFeatures} strict>
+      <Comp>
         <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
-      </LazyMotion>
-    </Comp>
+      </Comp>
+    </LazyMotion>
   )
 }
