@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import Image, { ImageProps } from 'next/image'
+import Image, { ImageProps } from 'next/legacy/image'
 import { useState } from 'react'
 
 const BlurImage: FunctionComponent<ImageProps> = ({ alt, className, src, ...props }) => {

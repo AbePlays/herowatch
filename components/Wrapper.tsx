@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import IconArrowLeft from './IconArrowLeft'
 
@@ -15,7 +15,7 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
       <div className="mx-auto max-w-screen-lg">
         <header>
           <nav className="text-center ">
-            <Link className="text-lg tracking-widest" href="/">
+            <Link href="/" className="text-lg tracking-widest">
               trackr.
             </Link>
           </nav>
@@ -26,7 +26,7 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
           </Link>
           <span className="text-2xl font-semibold capitalize tracking-wide sm:text-3xl">{heading}</span>
         </div>
-        <motion.div className="mt-8 flex items-center gap-6" layout>
+        <m.div className="mt-8 flex items-center gap-6" layout>
           <div className="relative">
             <Link
               className={`relative z-10 rounded-full p-4 font-light uppercase tracking-widest ${
@@ -37,10 +37,7 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
               Movies
             </Link>
             {movieSelected && (
-              <motion.div
-                className="absolute inset-0 -top-3 h-12 rounded-full bg-[#EABC85] shadow"
-                layoutId="background"
-              />
+              <m.div className="absolute inset-0 -top-3 h-12 rounded-full bg-[#EABC85] shadow" layoutId="background" />
             )}
           </div>
           <div className="relative">
@@ -53,13 +50,10 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
               Tv Shows
             </Link>
             {tvShowSelected && (
-              <motion.div
-                className="absolute inset-0 -top-3 h-12 rounded-full bg-[#EABC85] shadow"
-                layoutId="background"
-              />
+              <m.div className="absolute inset-0 -top-3 h-12 rounded-full bg-[#EABC85] shadow" layoutId="background" />
             )}
           </div>
-        </motion.div>
+        </m.div>
         <hr className="my-8 border-gray-300" />
         <main>{children}</main>
       </div>

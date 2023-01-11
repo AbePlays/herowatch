@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import BlurImage from '../../components/BlurImage'
 import IconClock from '../../components/IconClock'
@@ -52,7 +52,7 @@ interface Props {
 
 const AllTvShows: NextPage<Props> = (props) => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
         <title>Upcoming Dc Tv Shows</title>
         <meta name="description" content="Check upcoming Dc and Marvel Tv Shows" />
@@ -83,7 +83,7 @@ const AllTvShows: NextPage<Props> = (props) => {
       ) : (
         <p className="text-center">No Content Found</p>
       )}
-    </motion.div>
+    </m.div>
   )
 }
 
