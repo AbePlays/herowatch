@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: false,
   images: {
     domains: ['image.tmdb.org'],
+    formats: ['image/avif', 'image/webp'],
   },
   // NOTE: Preact doesn't yet shim the new hooks in React v18.
   // webpack: (config, { dev, isServer }) => {
