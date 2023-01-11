@@ -6,12 +6,11 @@ import BlurImage from '../../components/BlurImage'
 import IconClock from '../../components/IconClock'
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const dev = process.env.NODE_ENV !== 'production'
-  const basePath = dev ? 'http://localhost:3000' : 'https://nextdcmarvelproject.vercel.app'
-  const marvelApi = `${basePath}/api/marvel/tv`
-
-  const apiRes = await fetch(marvelApi)
-  const data = await apiRes.json()
+  const api_key = process.env.TMDB_API_KEY
+  const response = await fetch(
+    `https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&language=en-US&page=1&with_companies=420&sort_by=primary_release_date.desc`
+  )
+  const data = await response.json()
 
   const today = new Date()
   const result =
