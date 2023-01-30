@@ -1,3 +1,4 @@
+import { Plus_Jakarta_Sans } from '@next/font/google'
 import { AnimatePresence, LazyMotion } from 'framer-motion'
 import type { AppProps } from 'next/app'
 import Router from 'next/router'
@@ -7,6 +8,8 @@ import React from 'react'
 import 'nprogress/nprogress.css'
 import Wrapper from '../components/Wrapper'
 import '../styles/globals.css'
+
+const font = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
 NProgress.configure({
   minimum: 0.3,
@@ -41,6 +44,11 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <LazyMotion features={loadFeatures} strict>
       <Comp>
+        <style jsx global>{`
+          html {
+            font-family: ${font.style.fontFamily};
+          }
+        `}</style>
         <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>

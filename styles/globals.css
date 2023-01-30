@@ -2,33 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../public/fonts/PlusJakartaSans-Light.ttf');
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../public/fonts/PlusJakartaSans-Regular.ttf');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../public/fonts/PlusJakartaSans-SemiBold.ttf');
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../public/fonts/PlusJakartaSans-Bold.ttf');
-  font-weight: bold;
-}
-
 * {
   box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -43,7 +18,7 @@
 }
 
 #nprogress .bar {
-  background: #EABC85 !important;
+  background: #eabc85 !important;
 }
 
 #nprogress .peg {
