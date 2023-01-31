@@ -5,10 +5,12 @@ async function loader() {
 
   const apiRes = await Promise.all([
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&page=1&with_companies=128064&sort_by=primary_release_date.desc`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&page=1&with_companies=128064&sort_by=primary_release_date.desc`,
+      { next: { revalidate: 1 } }
     ),
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&page=1&with_companies=420&sort_by=primary_release_date.desc`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&page=1&with_companies=420&sort_by=primary_release_date.desc`,
+      { next: { revalidate: 1 } }
     ),
   ])
   const dcRes = await apiRes[0].json()
