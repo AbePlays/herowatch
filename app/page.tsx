@@ -26,20 +26,22 @@ export default function Page() {
             Universe
           </h1>
         </div>
-        <ul
-          aria-labelledby="title"
-          className="no-scrollbar mx-auto mt-20 flex max-w-screen-md snap-x gap-8 overflow-x-auto p-4"
-        >
-          <li className="snap-center">
-            <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel/movie" src={marvel} />
-          </li>
-          <li className="snap-center">
-            <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc/movie" src={dc} />
-          </li>
-          <li className="snap-center">
-            <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all/movie" src={handshake} />
-          </li>
-        </ul>
+        <main>
+          <ul
+            aria-labelledby="title"
+            className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg snap-x gap-8 overflow-x-auto p-4"
+          >
+            <li className="snap-center">
+              <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel/movie" src={marvel} />
+            </li>
+            <li className="snap-center">
+              <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc/movie" src={dc} />
+            </li>
+            <li className="snap-center">
+              <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all/movie" src={handshake} />
+            </li>
+          </ul>
+        </main>
       </div>
     </>
   )

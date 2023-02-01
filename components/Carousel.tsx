@@ -19,7 +19,7 @@ export default function Carousel({ data }: Props) {
                 alt={item.title + ' poster'}
                 className="bg-gray-400"
                 layout="fill"
-                src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
+                src={item?.poster_path ? `https://image.tmdb.org/t/p/w500/${item?.poster_path}` : item?.fallback_img}
               />
               <div className="absolute right-2 bottom-2 left-2 space-y-2 rounded-lg bg-white/20 p-2 font-semibold text-white backdrop-blur-sm">
                 <h2 className="">{item?.title}</h2>

@@ -23,6 +23,7 @@ async function loader() {
           daysToRelease: item.daysToRelease,
           id: item.id,
           poster_path: item.poster_path,
+          fallback_img: '/images/Marvel.jpeg',
           title: item.title,
         }
       })
