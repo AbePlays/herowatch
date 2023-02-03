@@ -9,19 +9,20 @@ const nextConfig = {
     domains: ['image.tmdb.org'],
     formats: ['image/avif', 'image/webp'],
   },
-  webpack: (config, { dev, isServer }) => {
-    // Replace React with Preact only in client production build
-    if (!dev && !isServer) {
-      Object.assign(config.resolve.alias, {
-        'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      })
-    }
+  // NOTE: Preact doesn't yet shim the new hooks in React v18.
+  // webpack: (config, { dev, isServer }) => {
+  //   // Replace React with Preact only in client production build
+  //   if (!dev && !isServer) {
+  //     Object.assign(config.resolve.alias, {
+  //       'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
+  //       react: 'preact/compat',
+  //       'react-dom/test-utils': 'preact/test-utils',
+  //       'react-dom': 'preact/compat',
+  //     })
+  //   }
 
-    return config
-  },
+  //   return config
+  // },
 }
 
 module.exports = nextConfig
