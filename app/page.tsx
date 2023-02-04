@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
+import ImageWrapper from '../components/ImageWrapper'
 import dc from '../public/images/DC.png'
 import handshake from '../public/images/Handshake.webp'
 import marvel from '../public/images/Marvel.jpeg'
-import ImageWrapper from './ImageWrapper'
 
 export default function Page() {
   return (

@@ -1,7 +1,7 @@
 import { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
-import BlurImage from '../components/BlurImage'
+import BlurImage from './BlurImage'
 
 interface IImageWrapper {
   alt: string
