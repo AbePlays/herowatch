@@ -1,15 +1,16 @@
-import type { FunctionComponent } from 'react'
-import Image, { ImageProps } from 'next/legacy/image'
-import { useState } from 'react'
+'use client'
 
-const BlurImage: FunctionComponent<ImageProps> = ({ alt, className, src, ...props }) => {
-  const [loading, setLoading] = useState(true)
+import Image, { ImageProps } from 'next/legacy/image'
+import React from 'react'
+
+export default function BlurImage({ alt, className, src, ...props }: ImageProps) {
+  const [loading, setLoading] = React.useState(true)
 
   return (
     <Image
       alt={alt}
-      className={`object-cover object-center duration-700 ease-in-out ${className} ${
-        loading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'
+      className={`object-cover object-center duration-500 ease-in-out ${className} ${
+        loading ? 'scale-110 blur grayscale' : 'scale-100 blur-0 grayscale-0'
       }`.trim()}
       onLoadingComplete={() => setLoading(false)}
       placeholder={typeof src === 'string' ? 'empty' : 'blur'}
@@ -18,5 +19,3 @@ const BlurImage: FunctionComponent<ImageProps> = ({ alt, className, src, ...prop
     />
   )
 }
-
-export default BlurImage
