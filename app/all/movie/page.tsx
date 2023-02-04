@@ -28,7 +28,13 @@ async function loader() {
         return dateReleaseProduct.getTime() >= today.getTime()
       })
       .map((item) => {
-        return { daysToRelease: item.daysToRelease, id: item.id, poster_path: item.poster_path, title: item.title }
+        return {
+          daysToRelease: item.daysToRelease,
+          id: item.id,
+          poster_path: item.poster_path,
+          fallback_img: '/images/Marvel.jpeg',
+          title: item.title,
+        }
       })
       .sort((a, b) => b.daysToRelease - a.daysToRelease)
 
