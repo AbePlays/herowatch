@@ -8,8 +8,19 @@ import marvel from '../public/images/Marvel.jpeg'
 export default function Page() {
   return (
     <>
-      <div className="relative min-h-screen w-screen bg-[url('/images/bg.jpeg')] bg-cover bg-no-repeat blur-2xl hue-rotate-[150deg]"></div>
-      <div className="absolute inset-0 p-4 text-center">
+      <div className="p-4 text-center bg-[#EFEDE9] min-h-screen relative isolate">
+        <div
+          aria-hidden="true"
+          className="w-1/2 md:w-1/3 h-2/3 md:h-full rounded-full bg-[#ec1d24] absolute blur-3xl left-0 top-0 opacity-30 -z-10 animate-blob"
+        />
+        <div
+          aria-hidden="true"
+          className="hidden md:block w-1/3 h-2/3 md:h-full rounded-full bg-[#fff3c1] absolute blur-3xl left-1/3 top-0 opacity-60 -z-10 animate-blob animation-delay-2000"
+        />
+        <div
+          aria-hidden="true"
+          className="w-1/2 md:w-1/3 h-2/3 md:h-full rounded-full bg-[#0378F2] absolute blur-3xl right-0 top-0 opacity-30 -z-10 animate-blob animation-delay-4000"
+        />
         <header>
           <nav>
             <Link className="text-lg tracking-widest" href="/">
@@ -29,16 +40,16 @@ export default function Page() {
         <main>
           <ul
             aria-labelledby="title"
-            className="no-scrollbar mx-auto mt-20 flex max-w-screen-lg snap-x gap-8 overflow-x-auto p-4"
+            className="no-scrollbar mx-auto mt-20 flex max-w-screen-md snap-x gap-8 overflow-x-auto p-4"
           >
             <li className="snap-center">
               <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel/movie" src={marvel} />
             </li>
             <li className="snap-center">
-              <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc/movie" src={dc} />
+              <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all/movie" src={handshake} />
             </li>
             <li className="snap-center">
-              <ImageWrapper alt="" bg="bg-[#fff3c1]" href="/all/movie" src={handshake} />
+              <ImageWrapper alt="dc logo" bg="bg-[#0378F2]" href="/dc/movie" src={dc} />
             </li>
           </ul>
         </main>
