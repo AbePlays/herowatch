@@ -1,7 +1,13 @@
+import { type Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
 
 import Wrapper from '../../components/Wrapper'
+
+export const metadata: Metadata = {
+  title: 'DC',
+  description: 'Check Upcoming DC Projects',
+}
 
 type Props = {
   children: React.ReactNode

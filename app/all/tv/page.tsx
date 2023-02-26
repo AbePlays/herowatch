@@ -1,4 +1,10 @@
+import { type Metadata } from 'next'
 import Carousel from '../../../components/Carousel'
+
+export const metadata: Metadata = {
+  title: 'DC - Marvel',
+  description: 'Upcoming DC and Marvel Tv Shows',
+}
 
 async function loader() {
   const api_key = process.env.TMDB_API_KEY
