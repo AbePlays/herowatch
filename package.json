@@ -15,7 +15,7 @@
     "validate": "npm run check-types && npm run check-format && npm run lint && npm run build"
   },
   "dependencies": {
-    "next": "13.2.1",
+    "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -26,7 +26,7 @@
     "@types/react-dom": "18.0.11",
     "autoprefixer": "^10.4.13",
     "eslint": "8.37.0",
-    "eslint-config-next": "13.2.1",
+    "eslint-config-next": "13.2.4",
     "eslint-config-prettier": "^8.6.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
