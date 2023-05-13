@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   reactStrictMode: true,
-  swcMinify: false,
   images: {
     domains: ['image.tmdb.org'],
     formats: ['image/avif', 'image/webp'],
