@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['image.tmdb.org'],
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [{ hostname: 'image.tmdb.org' }],
   },
   // NOTE: Preact doesn't yet shim the new hooks in React v18.
   // webpack: (config, { dev, isServer }) => {

@@ -4,6 +4,5 @@
   "semi": false,
   "singleQuote": true,
   "tabWidth": 2,
-  "tailwindConfig": "./tailwind.config.js",
   "trailingComma": "es5"
 }
