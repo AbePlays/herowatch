@@ -40,7 +40,7 @@ export default function Page() {
         <main>
           <ul
             aria-labelledby="title"
-            className="no-scrollbar mx-auto mt-20 flex max-w-screen-md snap-x gap-8 overflow-x-auto p-4"
+            className="no-scrollbar mt-20 flex max-w-fit mx-auto snap-x gap-8 overflow-x-auto p-4"
           >
             <li className="snap-center">
               <ImageWrapper alt="marvel logo" bg="bg-[#ec1d24]" href="/marvel/movie" src={marvel} />
